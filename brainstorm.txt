@@ -1,0 +1,21 @@
+elements of the game:
+
+board 
+    need to show visual representation of the board
+    need to store locations of pieces
+    
+score section
+    need a way to keep track of player names
+    need a way to keep track of each player's score
+    each player needs a symbol
+    need to increment score when a player wins
+    need to show whose turn it is with css
+
+game loop 
+    need to check board after each round
+    need to respond to player interaction
+
+
+record of moves
+    need to keep track of all moves
+    need to display moves

@@ -1,0 +1,32 @@
+/* Some normalization (on top of modern normalize. Credit to Matt Brictson (https://mattbrictson.com/blog/css-normalize-and-reset#my-recommendation */
+
+/* Set the default line height to be in line with accessibility standards https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html */
+:root {
+    line-height: 1.5;
+    font-family: 'Norse Bold', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    overflow: hidden;
+  }
+
+/* Get rid of all margins on (almost) all text */
+h1, h2, h3, h4, h5, figure, p, ol, ul {
+    margin: 0;
+}
+
+/* For compatibility with Safari Voice Over */
+ol[role="list"], ul[role="list"] {
+    list-style: none;
+    padding-inline: 0;
+  }
+
+/* Set headings to no styles so I can style them myself */
+h1, h2, h3, h4, h5 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+/* Sets the default behavior for images to fit within container */
+img {
+    display: block;
+    max-inline-size: 100%;
+  }
