@@ -30,3 +30,66 @@ img {
     display: block;
     max-inline-size: 100%;
   }
+
+
+.game-header {
+    width: 100%;
+    background-color: orange;
+}
+.game-header h1 {
+    font-size: 3rem;
+    text-align: center;
+    color: floralwhite;
+}
+main {
+    width: 100%;
+}
+.score-section {
+    height: 10vh;
+    margin-top: 3rem;
+}
+.score-section > h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 2rem;
+}
+.score-section > div {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+}
+.player-score-holder, .player-two-score-holder {
+    border: 1px solid grey;
+    width: 15rem;
+    height: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.game-board-section {
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+}
+td {
+    height: 173px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 80px;
+    padding: 50px;
+}
+tr {
+    border: 1px solid black;
+}
+.border-left-gone {
+    border-left: none;
+}
+.border-right-gone {
+    border-right: none;
+}
+.border-bottom-gone {
+    border-bottom: none;
+}
+.border-top-gone {
+    border-top: none;
+}

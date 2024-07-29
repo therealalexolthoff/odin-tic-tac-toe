@@ -12,9 +12,48 @@
         <h1>Tic Tac Toe</h1>
     </header>
     <main>
-        <section class="score-section"></section>
-        <section id="game-board-section" class="game-board-section"></section>
-        <section class="move-record-section"></section>
+        <section class="score-section">
+            <h2>Scores</h2>
+            <div>
+                <div class="player-score-holder">
+                    <span class="player-symbol"></span><span class="player-score"></span>
+                </div>
+            <div class="player-two-score-holder">
+                <span class="player-two-symbol"></span>
+                <span class="player-two-score"></span>
+            </div>
+            </div>
+        </section>
+        <section id="game-board-section" class="game-board-section">
+          <table width="25%">
+            <tr>
+                <td class="border-left-gone border-top-gone"></td>
+                <td class=" border-top-gone">
+                    
+                </td>
+                <td class=" border-top-gone border-right-gone">
+                 
+                </td>
+            </tr>
+            <tr>
+                <td class="border-left-gone" ></td>
+                <td></td>
+                <td class="border-right-gone"></td>
+            </tr>
+            <tr>
+                <td class="border-left-gone border-bottom-gone"></td>
+                <td class=" border-bottom-gone"></td>
+                <td class=" border-bottom-gone border-right-gone"></td>
+            </tr>
+          </table>
+            
+           
+            
+            
+        </section>
+        <section id="move-record-section" class="move-record-section">
+
+        </section>
     </main>
     <script src="script.js"></script>
 </body>
