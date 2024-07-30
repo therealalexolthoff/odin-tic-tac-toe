@@ -16,6 +16,15 @@ game loop
     need to respond to player interaction
 
 
+
 record of moves
     need to keep track of all moves
     need to display moves
+
+player
+    needs an active status
+    needs a way to toggle active status
+    needs a score
+    needs a way to increment score
+    needs a name
+    needs a way to change name
