@@ -24,10 +24,25 @@ const GAMEBOARD = (function () {
 
 // Helper functions
 const countOccurrences = (arr, val) =>
-    arr.reduce((a, v) => (v === val[0] || v === val[1] ? a + 1 : a), 0);
+    arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
 function setSymbol(square,symbol) {
     square.innerHTML = symbol;
 }
+
+function checkArrayForOccurences (line) {
+    const occurencesOfX = countOccurrences(line,'X');  
+    const occurencesOfY = countOccurrences(line,'O');  
+    if (occurencesOfX === 3){
+        return 'X';
+    }
+    else if (occurencesOfY === 3){
+        return 'Y';
+    }
+    else {
+        return null;
+    }
+}
+
 function checkActivePlayer () {
     return PLAYERS[0].getActiveStatus() ? PLAYERS[0] : PLAYERS[1];
 }
@@ -49,8 +64,8 @@ function clearUIBoard () {
                 const activePlayer = checkActivePlayer();
                 const symbol = activePlayer.getSymbol();
                 setSymbol(square,symbol);
-                GAMEBOARD.addSymbol(rowIndex,cellIndex,symbol);
-                gameLoop();
+                
+                gameLoop(rowIndex,cellIndex,symbol);
             }
             else {
                 alert('Spot taken!');
@@ -58,16 +73,6 @@ function clearUIBoard () {
         })
     });
 })();
-
-function checkRows (board) {
-    for (row of board)  {
-        const occurences = countOccurrences(row,['X','O'])
-        if (occurences === 3){
-            return row[0];
-        }
-    }
-    return null;
-}
 
 function checkColumn(board){
     const column1 = [];
@@ -78,18 +83,8 @@ function checkColumn(board){
         column2.push(row[1]);
         column3.push(row[2]);
     }
-   if (countOccurrences(column1,['X','O']) === 3){
-    return column1[0];
-   }
-   else if (countOccurrences(column2,['X','O']) === 3){
-    return column2[0];
-   }
-   else if (countOccurrences(column3,['X','O']) === 3){
-    return column3[0];
-   }
-   else {
-    return null;
-   }
+    board.push(column1,column2,column3)
+    return board;
 }
 function checkDiagonal(board) {
     let diagonalOne = [];
@@ -108,23 +103,24 @@ function checkDiagonal(board) {
             diagonalOne.push(row[2])
             diagonalTwo.push(row[0])
         }
+        counter++;
     }
-    if (countOccurrences(diagonalOne,['X','O']) === 3){
-        return diagonalOne[0];
-       }
-       else if (countOccurrences(diagonalTwo,['X','O']) === 3){
-        return diagonalTwo[0];
-       }
-       else {
-        return null;
-       }
+    board.push(diagonalOne,diagonalTwo)
+    return board;
 }
-function checkForWinner (board) {
-    const diagonalWin = checkDiagonal(board);
-    const rowWin = checkRows(board);
-    const columnWin = checkColumn(board);
-    return columnWin ? columnWin : rowWin ? rowWin : diagonalWin ? diagonalWin : null;
+
+function checkBoard (board) {
+    const checkedBoard = checkDiagonal(checkColumn(board))
+    for (line of checkedBoard) {
+        let winnerStatus = checkArrayForOccurences(line)
+        if (winnerStatus){
+            return winnerStatus;
+        }
+    }
+    return null;
+
 }
+
 function chooseWinner(winnerSymbol,players) {
     players.forEach(player => {
         if (player.getSymbol() === winnerSymbol){
@@ -132,15 +128,18 @@ function chooseWinner(winnerSymbol,players) {
         }
     })
 }
-const gameLoop = function() {
-    const board = GAMEBOARD.getBoard();
-    const winnerSymbol = checkForWinner(board);
-    console.log(board)
+
+const gameLoop = function(row,cell,symbol) {
+    GAMEBOARD.addSymbol(row,cell,symbol);
+    let boardForThisRound =[...GAMEBOARD.getBoard()];
+    console.log(boardForThisRound)
+    const winnerSymbol = checkBoard(boardForThisRound);
     if (winnerSymbol) {
+        console.log('Winner')
         chooseWinner(winnerSymbol,PLAYERS);
         GAMEBOARD.clearBoard();
-        clearUIBoard();
-    }
+        setTimeout(clearUIBoard,2000);
+     }
     switchActive();
 }
 

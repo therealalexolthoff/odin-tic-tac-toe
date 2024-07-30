@@ -28,3 +28,16 @@ player
     needs a way to increment score
     needs a name
     needs a way to change name
+
+
+thoughts on how to handle the checking game loop
+
+    first, you need to check every row 
+    then you need to check every column
+    then you need to check every diagonal
+    but if in checking you find any case where 
+    the line has 3 of a kind, you stop
+
+    approaches:
+    1. put every row, every column, and every diagonal in an array then loop through the array and check until you find
+    an array with 3 of a kind. 
