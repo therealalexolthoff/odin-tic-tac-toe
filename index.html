@@ -6,6 +6,7 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="modern-normalize.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/cb0cf495cb.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="game-header">
@@ -15,12 +16,22 @@
         <section class="score-section">
             <h2>Scores</h2>
             <div>
-                <div class="player-div player-score-holder">
-                    <span class="player-symbol"></span><span class="player-score"></span>
+                <div class="player-div player-info-holder">
+                    <span class="player-name-holder">
+                        <span id="player-name"></span>
+                        <span id="edit-player-name"><i class=" fa-solid fa-pen"></i></span>
+                    </span>
+                    <span class="player-symbol">Symbol: O</span>
+                    <span id="player-score">Score <strong>0</strong></span>
                 </div>
-            <div class="player-div player-two-score-holder">
-                <span class="player-two-symbol"></span>
-                <span class="player-two-score"></span>
+            <div class="player-div player-two-info-holder">
+                <span class="player-name-holder">
+                    <span id="player-two-name"></span>
+                    <span id="edit-player-two-name"><i class=" fa-solid fa-pen"></i></span>
+                </span>
+                
+                <span class="player-two-symbol">Symbol: X</span>
+                <span id="player-two-score">Score: <strong>0</strong></span>
             </div>
             </div>
         </section>
@@ -52,5 +63,6 @@
         </section>
     </main>
     <script src="script.js"></script>
+    
 </body>
 </html>

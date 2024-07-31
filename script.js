@@ -50,10 +50,19 @@ function switchActive() {
     PLAYERS[0].toggleActive();
     PLAYERS[1].toggleActive();
 }
+
 function clearUIBoard () {
     document.querySelectorAll('td').forEach(cell => cell.innerHTML = '')
 }
 
+function setPlayerNames(){
+    document.getElementById('player-name').innerHTML = PLAYERS[0].name;
+    document.getElementById('player-two-name').innerHTML = PLAYERS[1].name;
+}
+function updatePlayerScore() {
+    document.getElementById('player-score').querySelector('strong').innerHTML = PLAYERS[0].getScore();
+    document.getElementById('player-two-score').querySelector('strong').innerHTML = PLAYERS[1].getScore();
+}
 
 (function () {
     document.querySelectorAll('td').forEach(square => {
@@ -72,6 +81,15 @@ function clearUIBoard () {
             }
         })
     });
+    setPlayerNames();
+    document.getElementById('edit-player-name').addEventListener('click', ()=> {
+        PLAYERS[0].name = prompt("What new name would you like to assign to player 1?");
+        setPlayerNames();
+    });
+    document.getElementById('edit-player-two-name').addEventListener('click', ()=> {
+        PLAYERS[1].name = prompt("What new name would you like to assign to player 1?");
+        setPlayerNames();
+    })
 })();
 
 function checkColumn(board){
@@ -118,13 +136,12 @@ function checkBoard (board) {
         }
     }
     return null;
-
 }
 
 function chooseWinner(winnerSymbol,players) {
     players.forEach(player => {
         if (player.getSymbol() === winnerSymbol){
-            player.increaseScore;
+            player.increaseScore();
         }
     })
 }
@@ -132,15 +149,19 @@ function chooseWinner(winnerSymbol,players) {
 const gameLoop = function(row,cell,symbol) {
     GAMEBOARD.addSymbol(row,cell,symbol);
     let boardForThisRound =[...GAMEBOARD.getBoard()];
-    console.log(boardForThisRound)
     const winnerSymbol = checkBoard(boardForThisRound);
     if (winnerSymbol) {
-        console.log('Winner')
         chooseWinner(winnerSymbol,PLAYERS);
         GAMEBOARD.clearBoard();
         setTimeout(clearUIBoard,2000);
-     }
-    switchActive();
+        updatePlayerScore();
+        if (!PLAYERS[0].getActiveStatus()){
+            switchActive()
+        }
+    }
+    else {
+        switchActive();
+    }
 }
-
+PLAYERS[0].toggleActive()
 

@@ -58,12 +58,12 @@ main {
     justify-content: center;
     gap: 6rem;
 }
-.player-score-holder, .player-two-score-holder {
+.player-info-holder, .player-two-info-holder {
     border: 1px solid grey;
     width: 15rem;
     height: 3rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 .game-board-section {
